@@ -1,5 +1,4 @@
-import java.util.Random;
-import java.util.ArrayList;
+import fri.shapesge.Manazer;
 /**
  * Write a description of class Hra here.
  * 
@@ -7,24 +6,23 @@ import java.util.ArrayList;
  * @version (a version number or a date)
  */
 public class Hra {
+    private HraciaPlocha hraciaPlocha;
+    private Hrac hrac;
     private Manazer manazer;
-    private Kacka kacka;
-    
-    private Prekazka prekazka01;
-    private Prekazka prekazka02;
-    private Prekazka prekazka03;
-    private Prekazka prekazka04;
-
-    private ArrayList<ArrayList<String>> hraciaPlocha;
+    /**
+     * Constructor for objects of class Hra
+     */
     public Hra() {
+        this.hraciaPlocha = new HraciaPlocha(this);
+        this.hrac = new Hrac();
         this.manazer = new Manazer();
-        this.kacka = new Kacka();
-        this.prekazka01 = new Prekazka("strom");
-        this.prekazka02 = new Prekazka("strom");
-        this.prekazka03 = new Prekazka("kamen");
-        this.prekazka04 = new Prekazka("kamen");
 
-        
-        this.manazer.spravujObjekt(this.kacka);
+        this.manazer.spravujObjekt(hrac);
+        this.manazer.spravujObjekt(hraciaPlocha);
     }
+
+    public void presunHracaNavrch() {
+        this.hrac.presunNavrch();
+    }
+
 }

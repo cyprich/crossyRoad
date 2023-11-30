@@ -1,24 +1,21 @@
 import fri.shapesge.Obrazok;
-import java.util.Random;
 /**
- * Write a description of class Auto here.
+ * Write a description of class Policko here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Auto {
+public class Policko {
     private Obrazok obrazok;
-    private Random random;
     private int x;
     private int y;
     /**
-     * Constructor for objects of class Auto
+     * Constructor for objects of class Policko
      */
-    public Auto(int x) {
-        this.random = new Random();
+    public Policko(String cesta, int x, int y) {
         this.x = x;
-        this.y = this.random.nextInt(6) * 100;
-        this.obrazok = new Obrazok("pics/auto.png");
+        this.y = y;
+        this.obrazok = new Obrazok(cesta);
         this.obrazok.zmenPolohu(this.x, this.y);
         this.obrazok.zobraz();
     }
@@ -39,14 +36,5 @@ public class Auto {
 
     public void vymaz() {
         this.obrazok.skry();
-    }
-
-    public void tikAuto() {
-        if (this.y < 600) {
-            this.y += 100;
-        } else {
-            this.y = 0;
-        }
-        this.obrazok.zmenPolohu(this.x, this.y);
     }
 }
