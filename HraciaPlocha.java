@@ -30,11 +30,10 @@ public class HraciaPlocha {
 
         // vygeneruje stlpce, necha prve 3 prazdne (kvoli pripadnym koliziam s hracom)
         for (int i = 0; i < 7; i++) {
-            //this.stlpec = new Stlpec(this.getNahodnaPrekazka(), i * 100);
             if (i <= 3) {
                 this.zoznamStlpcov.add(new Stlpec("", i * 100));
             } else {
-                this.zoznamStlpcov.add(getNovyStlpec(i * 100));
+                this.zoznamStlpcov.add(this.getNovyStlpec(i * 100));
             }
         }
     }
@@ -44,13 +43,16 @@ public class HraciaPlocha {
     }
 
     public String getNahodnaPrekazka() {
-        return this.zoznamPrekazok.get(random.nextInt(this.zoznamPrekazok.size()));
+        return this.zoznamPrekazok.get(this.random.nextInt(this.zoznamPrekazok.size()));
     }
 
     public void tikHraciaPlocha() {
-        this.zoznamStlpcov.add(getNovyStlpec(700));
+        // prida sa novy stlpec
+        this.zoznamStlpcov.add(this.getNovyStlpec(700));
         
-        for (Stlpec stlpec : zoznamStlpcov) {
+        // kazdy stlpec sa posunie dolava
+        // posledny stlpec nalavo (mimo obrazovky) sa vymaze
+        for (Stlpec stlpec : this.zoznamStlpcov) {
             if (stlpec != null && stlpec.getX() >= 100) {
                 stlpec.zmenPolohu(stlpec.getX() - 100);
             } else if (stlpec.getX() < 100) {

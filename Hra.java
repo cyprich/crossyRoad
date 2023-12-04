@@ -17,8 +17,8 @@ public class Hra {
         this.hrac = new Hrac();
         this.manazer = new Manazer();
 
-        this.manazer.spravujObjekt(hrac);
-        this.manazer.spravujObjekt(hraciaPlocha);
+        this.manazer.spravujObjekt(this.hrac);
+        this.manazer.spravujObjekt(this.hraciaPlocha);
     }
 
     public void presunHracaNavrch() {

@@ -23,7 +23,7 @@ public class Hrac {
     public void posunHore() {
         if (this.y > 0) {
             this.y -= 100;
-            this.obrazok.zmenPolohu(this.x, this.y);;
+            this.obrazok.zmenPolohu(this.x, this.y);
         }
     }
 

@@ -54,7 +54,7 @@ public class Stlpec {
 
     public void zmenPolohu(int x) {
         this.x = x;
-        for (Policko policko : zoznamPolicok) {
+        for (Policko policko : this.zoznamPolicok) {
             policko.zmenPolohu(this.x, policko.getY());
 
         }
@@ -68,7 +68,7 @@ public class Stlpec {
     }
 
     public void vymaz() {
-        for (Policko policko : zoznamPolicok) {
+        for (Policko policko : this.zoznamPolicok) {
             policko.vymaz();
         }
         if (this.auto != null) {
