@@ -36,6 +36,7 @@ public class Stlpec {
                 }
                 this.auto = new Auto(this.x);
                 this.manazer.spravujObjekt(this.auto);
+                break;
                 
             default:
                 break;
@@ -54,8 +55,8 @@ public class Stlpec {
 
     public void zmenPolohu(int x) {
         this.x = x;
-        for (Policko policko : this.zoznamPolicok) {
-            policko.zmenPolohu(this.x, policko.getY());
+        for (Policko polickoA : this.zoznamPolicok) {
+            polickoA.zmenPolohu(this.x, polickoA.getY());
 
         }
         if (this.auto != null) {
@@ -67,9 +68,10 @@ public class Stlpec {
         return this.x;
     }
 
+    // nazov polickoA je kvoli checkstyle, bolo treba dat iny nazov ako policko
     public void vymaz() {
-        for (Policko policko : this.zoznamPolicok) {
-            policko.vymaz();
+        for (Policko polickoA : this.zoznamPolicok) {
+            polickoA.vymaz();
         }
         if (this.auto != null) {
             this.auto.vymaz();

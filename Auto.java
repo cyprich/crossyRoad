@@ -42,10 +42,10 @@ public class Auto {
     }
 
     public void tikAuto() {
-        if (this.y < 600) {
-            this.y += 100;
+        if (this.y < 700) {
+            this.y += 1;
         } else {
-            this.y = 0;
+            this.y = -100;
         }
         this.obrazok.zmenPolohu(this.x, this.y);
     }

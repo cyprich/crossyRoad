@@ -2,5 +2,5 @@
     - hrac - auto -> game over
     - hrac - jama a ohen -> game over
     - hrac - strom a kamen -> nemoze skocit dopredu, ak sa pred nimi nachadza
-- ovladanie hracom
-    - hrac sam rozhodne kedy chce "skocit na dalsie policko" -> prikaz nevykonava tik ale stlacenie tlacitka (space, sipka)
+- auta sa postupne zrychluju
+- skore

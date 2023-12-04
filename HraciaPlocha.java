@@ -46,17 +46,18 @@ public class HraciaPlocha {
         return this.zoznamPrekazok.get(this.random.nextInt(this.zoznamPrekazok.size()));
     }
 
-    public void tikHraciaPlocha() {
+    public void posunHraciuPlochu() {
         // prida sa novy stlpec
         this.zoznamStlpcov.add(this.getNovyStlpec(700));
         
         // kazdy stlpec sa posunie dolava
         // posledny stlpec nalavo (mimo obrazovky) sa vymaze
-        for (Stlpec stlpec : this.zoznamStlpcov) {
-            if (stlpec != null && stlpec.getX() >= 100) {
-                stlpec.zmenPolohu(stlpec.getX() - 100);
-            } else if (stlpec.getX() < 100) {
-                stlpec.vymaz();
+        // nazov stlpecA je kvoli checkstyle, bolo treba dat iny nazov ako stlpec
+        for (Stlpec stlpecA : this.zoznamStlpcov) {
+            if (stlpecA != null && stlpecA.getX() >= 100) {
+                stlpecA.zmenPolohu(stlpecA.getX() - 100);
+            } else if (stlpecA.getX() < 100) {
+                stlpecA.vymaz();
             }
         }
 
