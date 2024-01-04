@@ -1,2 +1,6 @@
 *.class
 *.ctxt
+
+.idea/*
+doc/*
+out/*

@@ -39,4 +39,8 @@ public class Hrac {
         this.obrazok.skry();
         this.obrazok.zobraz();
     }
+
+    public int getY() {
+        return this.y;
+    }
 }

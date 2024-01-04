@@ -26,6 +26,10 @@ public class Policko {
         this.obrazok.zmenPolohu(this.x, this.y);
     }
 
+    public void zmenObrazok(String cesta) {
+        this.obrazok.zmenObrazok(cesta);
+    }
+
     public int getX() {
         return this.x;
     }

@@ -19,10 +19,21 @@ public class Hra {
 
         this.manazer.spravujObjekt(this.hrac);
         this.manazer.spravujObjekt(this.hraciaPlocha);
+        this.manazer.spravujObjekt(this);
     }
 
     public void presunHracaNavrch() {
         this.hrac.presunNavrch();
+    }
+
+    public void posunHore() {
+        System.out.println(this.hraciaPlocha.getMomentalnyStlpec());
+    }
+
+    // ked hrac pojde dopredu
+    public void posunHraciuPlochu() {
+        System.out.println(this.hrac.getY());
+        System.out.println(this.hraciaPlocha.getNasledujuciStlpec().getPolicko());
     }
 
 }

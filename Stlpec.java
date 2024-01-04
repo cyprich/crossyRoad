@@ -14,21 +14,28 @@ public class Stlpec {
     private ArrayList<Policko> zoznamPolicok;
     private Auto auto;
     private int x;
+    private String typ;
+    private boolean animaciaOhna;
     /**
      * Constructor for objects of class Stlpec
      */
     public Stlpec(String typ, int x) {
         this.x = x;
+        this.typ = typ;
         this.zoznamPolicok = new ArrayList<Policko>();
         this.random = new Random();
-        this.manazer = new Manazer();
+        this.animaciaOhna = true;
 
-        switch (typ) {
+        this.manazer = new Manazer();
+        this.manazer.spravujObjekt(this);
+
+        switch (this.typ) {
             case "kamen":
             case "strom":
-            case "ohen":
             case "jama":
-                this.zoznamPolicok.add(new Policko(this.getCestaKObrazku(typ), this.x, this.getNahodnaPoloha()));
+            case "ohen":
+                this.policko = new Policko(this.getCestaKObrazku(typ), this.x, this.getNahodnaPoloha());
+                this.zoznamPolicok.add(this.policko);
                 break;
             case "auto":
                 for (int i = 0; i < 7; i++) {
@@ -76,5 +83,22 @@ public class Stlpec {
         if (this.auto != null) {
             this.auto.vymaz();
         }
+    }
+
+    public void tikOhen() {
+        if (this.typ.equals("ohen")) {
+            if (this.animaciaOhna) {
+                this.policko.zmenObrazok("pics/ohen.png");
+                this.animaciaOhna = false;
+            } else {
+                this.policko.zmenObrazok("pics/ohen_flip.png");
+                this.animaciaOhna = true;
+            }
+        }
+
+    }
+
+    public Policko getPolicko() {
+        return this.policko;
     }
 }

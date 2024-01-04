@@ -64,4 +64,14 @@ public class HraciaPlocha {
         this.zoznamStlpcov.remove(0);
         this.nadradenaTrieda.presunHracaNavrch();
     }
+
+    // stlpec, na ktorom sa nachadza hrac (kolizie)
+    public Stlpec getMomentalnyStlpec() {
+        return this.zoznamStlpcov.get(1);
+    }
+
+    // stlpec, pred ktorym sa nachadza hrac (kolizie)
+    public Stlpec getNasledujuciStlpec() {
+        return this.zoznamStlpcov.get(2);
+    }
 }
