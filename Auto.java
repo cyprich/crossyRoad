@@ -21,6 +21,8 @@ public class Auto {
         this.obrazok = new Obrazok("pics/auto.png");
         this.obrazok.zmenPolohu(this.x, this.y);
         this.obrazok.zobraz();
+
+
     }
 
     public void zmenPolohu(int x, int y) {
@@ -41,7 +43,7 @@ public class Auto {
         this.obrazok.skry();
     }
 
-    public void tikAuto() {
+    public void posunAuto() {
         if (this.y < 700) {
             this.y += 1;
         } else {

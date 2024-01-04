@@ -74,4 +74,8 @@ public class HraciaPlocha {
     public Stlpec getNasledujuciStlpec() {
         return this.zoznamStlpcov.get(2);
     }
+
+    public ArrayList<Stlpec> getZoznamStlpcov() {
+        return this.zoznamStlpcov;
+    }
 }

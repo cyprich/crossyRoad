@@ -20,14 +20,14 @@ public class Hrac {
         this.obrazok.zobraz();
     }
 
-    public void posunHore() {
+    public void posunHracaHore() {
         if (this.y > 0) {
             this.y -= 100;
             this.obrazok.zmenPolohu(this.x, this.y);
         }
     }
 
-    public void posunDole() {
+    public void posunHracaDole() {
         if (this.y < 600) {
             this.y += 100;
             this.obrazok.zmenPolohu(this.x, this.y);
