@@ -15,6 +15,7 @@ public class Hra {
 
     private boolean hracPrehral;
     private boolean animaciaOhna;
+    private Skore skore;
 
     /**
      * Constructor for objects of class Hra
@@ -24,12 +25,15 @@ public class Hra {
         this.hrac = new Hrac();
         this.manazer = new Manazer();
 
-        this.manazer.spravujObjekt(this.hrac);
-        this.manazer.spravujObjekt(this.hraciaPlocha);
-        this.manazer.spravujObjekt(this);
-
         this.hracPrehral = false;
         this.animaciaOhna = true;
+
+        this.skore = new Skore();
+
+        this.manazer.spravujObjekt(this.hrac);
+        this.manazer.spravujObjekt(this.hraciaPlocha);
+        this.manazer.spravujObjekt(this.skore);
+        this.manazer.spravujObjekt(this);
     }
 
     public void presunHracaNavrch() {
@@ -42,6 +46,10 @@ public class Hra {
 
     public boolean getHracPrehral() {
         return this.hracPrehral;
+    }
+
+    public void pridajSkore() {
+        this.skore.zmenSkore(this.skore.getSkore() + 1);
     }
 
     // KOLIZIE
@@ -107,12 +115,15 @@ public class Hra {
                         System.out.println(nasledujuciStlpec.getAuto().getY());
                     } else if (!nasledujuciStlpec.getTyp().equals("strom") && !nasledujuciStlpec.getTyp().equals("kamen")) {
                         this.hraciaPlocha.posunHraciuPlochu();
+                        this.pridajSkore();
                     }
                 } else {
                     this.hraciaPlocha.posunHraciuPlochu();
+                    this.pridajSkore();
                 }
             } else {
                 this.hraciaPlocha.posunHraciuPlochu();
+                this.pridajSkore();
             }
         }
     }
@@ -145,9 +156,14 @@ public class Hra {
                 break;
             } else if (hodnotaHratZnovu == 1) {
                 /*
-                https://stackoverflow.com/questions/2670956/how-to-quit-a-java-app-from-within-the-program
+                 * COOPER, C. 2010. How to quit a java app from within the program [online]. Chris Cooper [cit. 2024-01-05]
+                 * Dostupné na:
+                 * https://stackoverflow.com/questions/2670956/how-to-quit-a-java-app-from-within-the-program
                 */
                 System.exit(0);
+                /*
+                 * Koniec citacie
+                */
                 break;
             }
         }
@@ -155,6 +171,7 @@ public class Hra {
 
     public void restart() {
         this.hraciaPlocha.restart();
+        this.skore.restart();
         this.hrac.restart();
         this.hrac.presunNavrch();
         this.hracPrehral = false;
