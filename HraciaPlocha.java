@@ -27,8 +27,12 @@ public class HraciaPlocha {
 
         this.zoznamStlpcov = new ArrayList<Stlpec>();
         this.nadradenaTrieda = nadradenaTrieda;
+        this.generujPrazdnyZoznamStlpcov();
+    }
 
-        // vygeneruje stlpce, necha prve 3 prazdne (kvoli pripadnym koliziam s hracom)
+    // vygeneruje stlpce, necha prve 3 prazdne (kvoli pripadnym koliziam s hracom)
+    public void generujPrazdnyZoznamStlpcov() {
+        this.zoznamStlpcov.clear();
         for (int i = 0; i < 7; i++) {
             if (i <= 3) {
                 this.zoznamStlpcov.add(new Stlpec("", i * 100));
@@ -77,5 +81,12 @@ public class HraciaPlocha {
 
     public ArrayList<Stlpec> getZoznamStlpcov() {
         return this.zoznamStlpcov;
+    }
+
+    public void restart() {
+        for (Stlpec s: this.zoznamStlpcov) {
+            s.vymaz();
+        }
+        this.generujPrazdnyZoznamStlpcov();
     }
 }

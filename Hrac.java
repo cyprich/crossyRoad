@@ -43,4 +43,9 @@ public class Hrac {
     public int getY() {
         return this.y;
     }
+
+    public void restart() {
+        this.y = 300;
+        this.obrazok.zmenPolohu(this.x, this.y);
+    }
 }

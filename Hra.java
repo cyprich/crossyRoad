@@ -144,13 +144,20 @@ public class Hra {
                 this.restart();
                 break;
             } else if (hodnotaHratZnovu == 1) {
+                /*
+                https://stackoverflow.com/questions/2670956/how-to-quit-a-java-app-from-within-the-program
+                */
+                System.exit(0);
                 break;
             }
         }
     }
 
     public void restart() {
-
+        this.hraciaPlocha.restart();
+        this.hrac.restart();
+        this.hrac.presunNavrch();
+        this.hracPrehral = false;
     }
 
     public void tikOhen() {

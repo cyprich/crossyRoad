@@ -51,4 +51,5 @@ public class Auto {
         }
         this.obrazok.zmenPolohu(this.x, this.y);
     }
+
 }
