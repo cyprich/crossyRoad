@@ -4,6 +4,9 @@
 .idea/*
 doc/*
 out/*
+.vscode/*
+META-INF/*
 
 *.bluej
 package.bluej
+
