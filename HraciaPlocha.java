@@ -37,7 +37,6 @@ public class HraciaPlocha {
 
     // vrati nahodnu prekazku
     public TypPrekazky getNahodnaPrekazka() {
-        System.out.println(TypPrekazky.values()[this.random.nextInt(TypPrekazky.values().length)]);
         return TypPrekazky.values()[this.random.nextInt(TypPrekazky.values().length)];
     }
 
