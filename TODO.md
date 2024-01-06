@@ -1,10 +1,5 @@
 ## Povinne
-- kolizie 
-    - hrac - auto -> game over
-    - hrac - jama a ohen -> game over
-    - hrac - strom a kamen -> nemoze skocit dopredu, ak sa pred nimi nachadza
 - auta sa postupne zrychluje
-- skore
 
 ## Polonepovinne
 - lepsie generovanie prekazok 
