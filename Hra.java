@@ -52,7 +52,7 @@ public class Hra {
         this.skore.zmenSkore(this.skore.getSkore() + 1);
     }
 
-    // KOLIZIE
+    // kolizie, ked hrac chce ist hore
     public void posunHore() {
         if (!this.hracPrehral) {
             Stlpec momentalnyStlpec = this.hraciaPlocha.getMomentalnyStlpec();
@@ -77,6 +77,7 @@ public class Hra {
         }
     }
 
+    // kolizie, ked hrac chce ist dole
     public void posunDole() {
         if (!this.hracPrehral) {
             Stlpec momentalnyStlpec = this.hraciaPlocha.getMomentalnyStlpec();
@@ -101,6 +102,7 @@ public class Hra {
         }
     }
 
+    // kolizie, ked hrac chce ist dopredu
     public void posunDopredu() {
         if (!this.hracPrehral) {
             Stlpec nasledujuciStlpec = this.hraciaPlocha.getNasledujuciStlpec();
@@ -136,6 +138,7 @@ public class Hra {
                 }
             }
 
+            // kolizie pri kazdom pohybe auta
             Stlpec momentalnyStlpec = this.hraciaPlocha.getMomentalnyStlpec();
             if (momentalnyStlpec.getAuto() != null) {
                 int hracY = this.hrac.getY();
