@@ -10,7 +10,6 @@ import java.util.Random;
 public class Auto {
     private Obrazok obrazok;
     private Random random;
-    private Manazer manazer;
     private int x;
     private int y;
     private float posunAuta;
@@ -27,9 +26,6 @@ public class Auto {
         this.obrazok = new Obrazok("pics/auto.png");
         this.obrazok.zmenPolohu(this.x, this.y);
         this.obrazok.zobraz();
-
-        this.manazer = new Manazer();
-        this.manazer.spravujObjekt(this);
 
         this.posunAuta = posunAuta;
     }

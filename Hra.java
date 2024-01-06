@@ -27,9 +27,9 @@ public class Hra {
         this.hracPrehral = false;
         this.animaciaOhna = true;
 
-        this.skore = new Skore();
+        this.skore = new Skore(this);
 
-        this.posunAuta = 1;
+        this.setPosunAuta(1);
 
         this.manazer.spravujObjekt(this.hrac);
         this.manazer.spravujObjekt(this.hraciaPlocha);
@@ -46,9 +46,20 @@ public class Hra {
 
     /**
      * Prida 1 skore
+     * Zvysujucim sa skore sa zvysuje taktiez rychlost auta
      */
     public void pridajSkore() {
         this.skore.zmenSkore(this.skore.getSkore() + 1);
+        this.setPosunAuta(1 + this.skore.getSkore()/20);
+    }
+
+    public void setPosunAuta(float hodnota) {
+        this.posunAuta = hodnota;
+        for (Stlpec s: this.hraciaPlocha.getZoznamStlpcov()) {
+            if (s.getTyp().equals(TypPrekazky.AUTO)) {
+                s.getAuto().setPosunAuta(this.posunAuta);
+            }
+        }
     }
 
     /**
@@ -228,18 +239,6 @@ public class Hra {
                         this.animaciaOhna = true;
                     }
                 }
-            }
-        }
-    }
-
-    /**
-     * Zvysuje sa atribut posunAuta, ktory udava hodnotu, o ktoru sa auto posuva pri kazdom tiku
-     */
-    public void tikZrychliAuto() {
-        this.posunAuta += 0.05;
-        for (Stlpec s: this.hraciaPlocha.getZoznamStlpcov()) {
-            if (s.getTyp().equals(TypPrekazky.AUTO)) {
-                s.getAuto().setPosunAuta(this.posunAuta);
             }
         }
     }

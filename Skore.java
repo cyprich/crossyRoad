@@ -11,13 +11,16 @@ public class Skore {
     private int skore;
     private int hodnotaNaZnizenieSkore;
     private BlokTextu blokTextu;
+    private Hra nadradenaTrieda;
 
     /**
      * Predstavuje skore, ktore dosiahol hrac pri hrani hry
      */
-    public Skore() {
+    public Skore(Hra nadradenaTrieda) {
         this.skore = 0;
         this.hodnotaNaZnizenieSkore = 0;
+
+        this.nadradenaTrieda = nadradenaTrieda;
 
         this.blokTextu = new BlokTextu("Skóre: " + this.skore, 10, 30);
         this.blokTextu.zmenFont("Arial", StylFontu.PLAIN, 24);
@@ -53,7 +56,9 @@ public class Skore {
         this.hodnotaNaZnizenieSkore += 1;
         if (this.hodnotaNaZnizenieSkore >= 3) {
             this.zmenSkore(this.skore - 10);
+            this.nadradenaTrieda.setPosunAuta(1 + this.skore/20);
         }
+
         // aby hrac nemal skore menej ako 0
         if (this.skore < 0) {
             this.skore = 0;
