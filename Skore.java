@@ -3,7 +3,7 @@ import fri.shapesge.StylFontu;
 
 /**
  * Predstavuje skore, ktore dosiahol hrac pri hrani hry
- * 
+ *
  * @author Peter Cyprich
  * @version 1.0 (2024-01-06)
  */
@@ -26,6 +26,7 @@ public class Skore {
 
     /**
      * Zmeni skore na danu hodnotu
+     *
      * @param noveSkore hodnota, na ktoru sa ma zmenit skore
      */
     public void zmenSkore(int noveSkore) {
