@@ -1,13 +1,10 @@
 /**
- * Write a description of class main here.
+ * Spusta cely program
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Peter Cyprich
+ * @version 1.0 (2024-01-06)
  */
 public class Main {
-    /**
-     * Constructor for objects of class main
-     */
     public static void main(String[] args) {
         Hra hra = new Hra();
     }

@@ -50,8 +50,13 @@ public class Skore {
      */
     public void tikSkore() {
         this.hodnotaNaZnizenieSkore += 1;
-        if (this.skore > 0 && this.hodnotaNaZnizenieSkore >= 3) {
+        if (this.hodnotaNaZnizenieSkore >= 3) {
             this.zmenSkore(this.skore - 10);
+        }
+        // aby hrac nemal skore menej ako 0
+        if (this.skore < 0) {
+            this.skore = 0;
+            this.zmenSkore(this.skore);
         }
     }
 

@@ -5,17 +5,24 @@ import java.util.Random;
  * Pouziva sa v triede Hra
  * 
  * @author Peter Cyprich
+ * @version 1.0 (2024-01-06)
  */
 public class HraciaPlocha {
     private Stlpec stlpec;
     private ArrayList<Stlpec> zoznamStlpcov;
     private Random random;
     private Hra nadradenaTrieda;
+    private float posunAuta;
+
     /**
      * Vytvara jednotlive stlpce
+     * @param nadradenaTrieda trieda, v ktorej sa vytvara instancia tejto triedy
+     * @param posunAuta pocet pixelov, o kolko sa ma obrazok triedy Auto posuvat
      */
-    public HraciaPlocha(Hra nadradenaTrieda) {
+    public HraciaPlocha(Hra nadradenaTrieda, float posunAuta) {
         this.random = new Random();
+
+        this.posunAuta = posunAuta;
 
         this.zoznamStlpcov = new ArrayList<Stlpec>();
         this.nadradenaTrieda = nadradenaTrieda;
@@ -30,7 +37,7 @@ public class HraciaPlocha {
         this.zoznamStlpcov.clear();
         for (int i = 0; i < 7; i++) {
             if (i <= 3) {
-                this.zoznamStlpcov.add(new Stlpec(TypPrekazky.PRAZDNE, i * 100));
+                this.zoznamStlpcov.add(new Stlpec(TypPrekazky.PRAZDNE, i * 100, this.posunAuta));
             } else {
                 this.zoznamStlpcov.add(this.getNovyStlpec(i * 100));
             }
@@ -49,7 +56,7 @@ public class HraciaPlocha {
      * @param x x-ova suradnica, na ktoru sa ma stlpec umiestnit
      */
     public Stlpec getNovyStlpec(int x) {
-        return new Stlpec(this.getNahodnaPrekazka(), x);
+        return new Stlpec(this.getNahodnaPrekazka(), x, this.posunAuta);
     }
 
     /**

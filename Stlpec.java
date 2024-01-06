@@ -7,6 +7,7 @@ import fri.shapesge.Manazer;
  * Stlpce sa pouzivaju v triede HraciaPlocha
  * 
  * @author Peter Cyprich
+ * @version 1.0 (2024-01-06)
  */
 public class Stlpec {
     private Manazer manazer;
@@ -16,18 +17,22 @@ public class Stlpec {
     private Auto auto;
     private int x;
     private TypPrekazky typ;
+    private float posunAuta;
 
     /**
      * Vytvori stlpec
      *
      * @param typ typ prekazky, ktora sa bude nachadzat v stlpci
      * @param x x-ova suradnica stlpca
+     * @param posunAuta pocet pixelov, o kolko sa ma obrazok triedy Auto posuvat
      */
-    public Stlpec(TypPrekazky typ, int x) {
+    public Stlpec(TypPrekazky typ, int x, float posunAuta) {
         this.x = x;
         this.typ = typ;
         this.zoznamPolicok = new ArrayList<Policko>();
         this.random = new Random();
+
+        this.posunAuta = posunAuta;
 
         this.manazer = new Manazer();
         this.manazer.spravujObjekt(this);
@@ -44,7 +49,7 @@ public class Stlpec {
                 for (int i = 0; i < 7; i++) {
                     this.zoznamPolicok.add(new Policko("pics/cesta.png", this.x, i * 100));
                 }
-                this.auto = new Auto(this.x);
+                this.auto = new Auto(this.x, this.posunAuta);
                 this.manazer.spravujObjekt(this.auto);
                 break;
                 

@@ -56,7 +56,7 @@ public class Hrac {
     }
 
     /**
-     * Presunie hraca na pouziciu, na ktorej bol na zaciatku hry
+     * Presunie hraca na poziciu, na ktorej bol na zaciatku hry
      */
     public void restart() {
         this.y = 300;

@@ -4,6 +4,7 @@ import fri.shapesge.Obrazok;
  * Pouzivaju sa v triede Stlpec
  *
  * @author Peter Cyprich
+ * @version 1.0 (2024-01-06)
  */
 public class Policko {
     private Obrazok obrazok;

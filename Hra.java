@@ -5,21 +5,22 @@ import javax.swing.JOptionPane;
  * Dava dokopy vsetky triedy a vytvara tak funkcnu hru
  *
  * @author Peter Cyprich
+ * @version 1.0 (2024-01-06)
  */
 public class Hra {
     private HraciaPlocha hraciaPlocha;
     private Hrac hrac;
     private Manazer manazer;
-
     private boolean hracPrehral;
     private boolean animaciaOhna;
     private Skore skore;
+    private float posunAuta;
 
     /**
      * Vytvara hru
      */
     public Hra() {
-        this.hraciaPlocha = new HraciaPlocha(this);
+        this.hraciaPlocha = new HraciaPlocha(this, this.posunAuta);
         this.hrac = new Hrac();
         this.manazer = new Manazer();
 
@@ -27,6 +28,8 @@ public class Hra {
         this.animaciaOhna = true;
 
         this.skore = new Skore();
+
+        this.posunAuta = 1;
 
         this.manazer.spravujObjekt(this.hrac);
         this.manazer.spravujObjekt(this.hraciaPlocha);
@@ -40,17 +43,6 @@ public class Hra {
     public void presunHracaNavrch() {
         this.hrac.presunNavrch();
     }
-
-    /*
-
-    public void setHracPrehral(boolean hodnota) {
-        this.hracPrehral = hodnota;
-    }
-
-    public boolean getHracPrehral() {
-        return this.hracPrehral;
-    }
-     */
 
     /**
      * Prida 1 skore
@@ -215,6 +207,7 @@ public class Hra {
         this.skore.restart();
         this.hrac.restart();
         this.hrac.presunNavrch();
+        this.posunAuta = 1;
         this.hracPrehral = false;
     }
 
@@ -235,6 +228,18 @@ public class Hra {
                         this.animaciaOhna = true;
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * Zvysuje sa atribut posunAuta, ktory udava hodnotu, o ktoru sa auto posuva pri kazdom tiku
+     */
+    public void tikZrychliAuto() {
+        this.posunAuta += 0.05;
+        for (Stlpec s: this.hraciaPlocha.getZoznamStlpcov()) {
+            if (s.getTyp().equals(TypPrekazky.AUTO)) {
+                s.getAuto().setPosunAuta(this.posunAuta);
             }
         }
     }
