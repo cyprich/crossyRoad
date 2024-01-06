@@ -1,9 +1,9 @@
 
 /**
- * Enumeration class TypPrekazky - write a description of the enum class here
+ * Predstavuje mozne typy prekazok
  * 
- * @author (your name here)
- * @version (version number or date here)
+ * @author Peter Cyprich
+ * @version 1.0 (2024-01-06)
  */
 public enum TypPrekazky {
     AUTO("auto"),
@@ -14,7 +14,7 @@ public enum TypPrekazky {
     PRAZDNE("");
 
     private String cesta;
-    private TypPrekazky(String nazovSuboru) {
+    TypPrekazky(String nazovSuboru) {
         this.cesta = "pics/" + nazovSuboru + ".png";
     }
 
@@ -22,5 +22,3 @@ public enum TypPrekazky {
         return this.cesta;
     }
 }
-
-

@@ -2,18 +2,19 @@ import fri.shapesge.BlokTextu;
 import fri.shapesge.StylFontu;
 
 /**
- * Write a description of class Skore here.
+ * Predstavuje skore, ktore dosiahol hrac pri hrani hry
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Peter Cyprich
+ * @version 1.0 (2024-01-06)
  */
 public class Skore {
-    /**
-     * Constructor for objects of class Skore
-     */
     private int skore;
     private int hodnotaNaZnizenieSkore;
     private BlokTextu blokTextu;
+
+    /**
+     * Predstavuje skore, ktore dosiahol hrac pri hrani hry
+     */
     public Skore() {
         this.skore = 0;
         this.hodnotaNaZnizenieSkore = 0;
@@ -23,6 +24,10 @@ public class Skore {
         this.blokTextu.zobraz();
     }
 
+    /**
+     * Zmeni skore na danu hodnotu
+     * @param noveSkore hodnota, na ktoru sa ma zmenit skore
+     */
     public void zmenSkore(int noveSkore) {
         this.skore = noveSkore;
         this.blokTextu.zmenText("Skóre: " + this.skore);
@@ -30,32 +35,44 @@ public class Skore {
         this.dajNavrch();
     }
 
-    public int getSkore() {
-        return this.skore;
-    }
-
+    /**
+     * Presunie text skore nad ostatne obrazky, aby bol viditelny
+     */
     public void dajNavrch() {
         this.blokTextu.skry();
         this.blokTextu.zobraz();
     }
 
+    /**
+     * Metoda na znizenie skore, ked je hrac neaktivny
+     * Vzdy, ked sa zavola metoda, zvysi sa hodnota atributu hodnotaNaZnizenieSkore
+     * Ak atribut hodnotaNaZnizenieSkore dosiahne hodnotu 3, hracove skore sa znizi
+     */
     public void tikSkore() {
-        // kazdu sekundu sa prida "hodnotaNaZnizenieSkore"
-        // vzdy ked sa hrac posunie, "hodnotaNaZnizenieSkore" sa vynuluje
-        // ak sa hrac nebude hybat 3 sekundy, jeho skore sa znizi o 10
         this.hodnotaNaZnizenieSkore += 1;
         if (this.skore > 0 && this.hodnotaNaZnizenieSkore >= 3) {
             this.zmenSkore(this.skore - 10);
         }
     }
 
+    /**
+     * Resetuje hodnotu atributu hodnotaNaZnizenieSkore na 0
+     * Metoda sa zavola vzdy, ked sa hrac posunie
+     */
     public void resetujHodnotuNaZnizenieSkore() {
         this.hodnotaNaZnizenieSkore = 0;
     }
 
+    /**
+     * Resetuje momentalne skore a atribut hodnotaNaZnizenieSkore na 0
+     */
     public void restart() {
         this.skore = 0;
-        this.zmenSkore(0);
+        this.zmenSkore(this.skore);
         this.resetujHodnotuNaZnizenieSkore();
+    }
+
+    public int getSkore() {
+        return this.skore;
     }
 }

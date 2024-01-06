@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.Random;
 /**
- * Write a description of class HraciaPlocha here.
+ * Vytvara jednotlive stlpce
+ * Pouziva sa v triede Hra
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Peter Cyprich
  */
 public class HraciaPlocha {
     private Stlpec stlpec;
@@ -12,7 +12,7 @@ public class HraciaPlocha {
     private Random random;
     private Hra nadradenaTrieda;
     /**
-     * Constructor for objects of class HraciaPlocha
+     * Vytvara jednotlive stlpce
      */
     public HraciaPlocha(Hra nadradenaTrieda) {
         this.random = new Random();
@@ -22,8 +22,11 @@ public class HraciaPlocha {
         this.generujPrazdnyZoznamStlpcov();
     }
 
-    // vygeneruje stlpce, necha prve 3 prazdne (kvoli pripadnym koliziam s hracom)
-    public void generujPrazdnyZoznamStlpcov() {
+    /**
+     * Vygeneruje novy zoznam stlpcov
+     * Prve 3 stlpce vytvori bez prekazky, kvoli pripadnym koliziam s hracom
+     */
+    private void generujPrazdnyZoznamStlpcov() {
         this.zoznamStlpcov.clear();
         for (int i = 0; i < 7; i++) {
             if (i <= 3) {
@@ -34,23 +37,31 @@ public class HraciaPlocha {
         }
     }
 
-
-    // vrati nahodnu prekazku
+    /**
+     * Vrati nahodnu prekazku
+     */
     public TypPrekazky getNahodnaPrekazka() {
         return TypPrekazky.values()[this.random.nextInt(TypPrekazky.values().length)];
     }
 
-    // vygeneruje novy nahodny stplec
+    /**
+     * Vrati stlpec s nahodnou prekazkou
+     * @param x x-ova suradnica, na ktoru sa ma stlpec umiestnit
+     */
     public Stlpec getNovyStlpec(int x) {
         return new Stlpec(this.getNahodnaPrekazka(), x);
     }
 
+    /**
+     * Posunie vsetky stlpce dolava o 100px
+     * Metoda sa vyvovlava vzdy, ked sa hrac posunie dopredu
+     * Vytvara iluziu pohybu hraca
+     */
     public void posunHraciuPlochu() {
         // prida sa novy stlpec
         this.zoznamStlpcov.add(this.getNovyStlpec(700));
         
         // kazdy stlpec sa posunie dolava
-        // posledny stlpec nalavo (mimo obrazovky) sa vymaze
         // nazov stlpecA je kvoli checkstyle, bolo treba dat iny nazov ako stlpec
         for (Stlpec stlpecA : this.zoznamStlpcov) {
             if (stlpecA != null && stlpecA.getX() >= 100) {
@@ -60,16 +71,23 @@ public class HraciaPlocha {
             }
         }
 
+        // stlpec nalavo (mimo obrazovky) sa vymaze
         this.zoznamStlpcov.remove(0);
         this.nadradenaTrieda.presunHracaNavrch();
     }
 
-    // stlpec, na ktorom sa nachadza hrac (kolizie)
+    /**
+     * Vrati stlpec, na ktorom sa nachadza hrac
+     * Pouziva sa v triede Hra pri detekovani kolizii s prekazkami
+     */
     public Stlpec getMomentalnyStlpec() {
         return this.zoznamStlpcov.get(1);
     }
 
-    // stlpec, pred ktorym sa nachadza hrac (kolizie)
+    /**
+     * Vrati stlpec, pred ktorym sa nachadza hrac
+     * Pouziva sa v triede Hra pri detekovani kolizii s prekazkami
+     */
     public Stlpec getNasledujuciStlpec() {
         return this.zoznamStlpcov.get(2);
     }
@@ -78,6 +96,9 @@ public class HraciaPlocha {
         return this.zoznamStlpcov;
     }
 
+    /**
+     * Vymaze aktualne stlpce a vygeneruje nove tak, ako na zaciatku hry
+     */
     public void restart() {
         for (Stlpec s: this.zoznamStlpcov) {
             s.vymaz();

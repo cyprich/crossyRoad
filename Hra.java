@@ -1,12 +1,10 @@
 import fri.shapesge.Manazer;
-
 import javax.swing.JOptionPane;
 
 /**
- * Write a description of class Hra here.
+ * Dava dokopy vsetky triedy a vytvara tak funkcnu hru
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Peter Cyprich
  */
 public class Hra {
     private HraciaPlocha hraciaPlocha;
@@ -18,7 +16,7 @@ public class Hra {
     private Skore skore;
 
     /**
-     * Constructor for objects of class Hra
+     * Vytvara hru
      */
     public Hra() {
         this.hraciaPlocha = new HraciaPlocha(this);
@@ -36,9 +34,14 @@ public class Hra {
         this.manazer.spravujObjekt(this);
     }
 
+    /**
+     * Presunie obrazok hraca nad ostatne obrazky, aby bol viditelny
+     */
     public void presunHracaNavrch() {
         this.hrac.presunNavrch();
     }
+
+    /*
 
     public void setHracPrehral(boolean hodnota) {
         this.hracPrehral = hodnota;
@@ -47,24 +50,34 @@ public class Hra {
     public boolean getHracPrehral() {
         return this.hracPrehral;
     }
+     */
 
+    /**
+     * Prida 1 skore
+     */
     public void pridajSkore() {
         this.skore.zmenSkore(this.skore.getSkore() + 1);
     }
 
-    // kolizie, ked hrac chce ist hore
+    /**
+     * Detekovanie kolizii s prekazkami
+     * Metoda sa vola vzdy, ked hrac stlaci sipku hore na klavesnici
+     */
     public void posunHore() {
         if (!this.hracPrehral) {
             Stlpec momentalnyStlpec = this.hraciaPlocha.getMomentalnyStlpec();
+            // ak sa hrac nenachadza na jednom z prvych troch stlpcov
             if (momentalnyStlpec.getPolicko() != null) {
                 int hracY = this.hrac.getY();
                 int polickoY = momentalnyStlpec.getPolicko().getY();
+                // ak sa hrac pri posune hore bude nachadzat na rovnakom policku ako prekazka
+                // resp. ak sa nachadza pod prekazkou
                 if (hracY - 100 == polickoY) {
-                    if (momentalnyStlpec.getTyp().equals(TypPrekazky.JAMA) || momentalnyStlpec.getTyp().equals(TypPrekazky.OHEN)) {
+                    // ak prekazka, na ktorej sa bude hrac nachadzat bude jama, ohen, alebo auto - hra sa skonci
+                    if (momentalnyStlpec.getTyp().equals(TypPrekazky.JAMA) || momentalnyStlpec.getTyp().equals(TypPrekazky.OHEN) || momentalnyStlpec.getTyp().equals(TypPrekazky.AUTO)) {
                         this.hrac.posunHracaHore();
                         this.gameOver();
-                    } else if (momentalnyStlpec.getTyp().equals(TypPrekazky.AUTO)) {
-                        System.out.println(momentalnyStlpec.getAuto().getY());
+                    // ak prekazka, na ktorej sa bude hrac nachadzat bude strom alebo kamen - nespravi nic. ak nie, posunie sa na policko
                     } else if (!momentalnyStlpec.getTyp().equals(TypPrekazky.STROM) && !momentalnyStlpec.getTyp().equals(TypPrekazky.KAMEN)) {
                         this.hrac.posunHracaHore();
                     }
@@ -77,19 +90,25 @@ public class Hra {
         }
     }
 
-    // kolizie, ked hrac chce ist dole
+    /**
+     * Detekovanie kolizii s prekazkami
+     * Metoda sa vola vzdy, ked hrac stlaci sipku dole na klavesnici
+     */
     public void posunDole() {
         if (!this.hracPrehral) {
             Stlpec momentalnyStlpec = this.hraciaPlocha.getMomentalnyStlpec();
+            // ak sa hrac nenachadza na jednom z prvych troch stlpcov
             if (momentalnyStlpec.getPolicko() != null) {
                 int hracY = this.hrac.getY();
                 int polickoY = momentalnyStlpec.getPolicko().getY();
+                // ak sa hrac pri posune dole bude nachadzat na rovnakom policku ako prekazka
+                // resp. ak sa nachadza nad prekazkou
                 if (hracY + 100 == polickoY) {
-                    if (momentalnyStlpec.getTyp().equals(TypPrekazky.JAMA) || momentalnyStlpec.getTyp().equals(TypPrekazky.OHEN)) {
+                    // ak prekazka, na ktorej sa bude hrac nachadzat bude jama, ohen, alebo auto - hra sa skonci
+                    if (momentalnyStlpec.getTyp().equals(TypPrekazky.JAMA) || momentalnyStlpec.getTyp().equals(TypPrekazky.OHEN) || momentalnyStlpec.getTyp().equals(TypPrekazky.AUTO)) {
                         this.hrac.posunHracaDole();
                         this.gameOver();
-                    } else if (momentalnyStlpec.getTyp().equals(TypPrekazky.AUTO)) {
-                        System.out.println(momentalnyStlpec.getAuto().getY());
+                    // ak prekazka, na ktorej sa bude hrac nachadzat bude strom alebo kamen - nespravi nic. ak nie, posunie sa na policko
                     } else if (!momentalnyStlpec.getTyp().equals(TypPrekazky.STROM) && !momentalnyStlpec.getTyp().equals(TypPrekazky.KAMEN)) {
                         this.hrac.posunHracaDole();
                     }
@@ -102,19 +121,25 @@ public class Hra {
         }
     }
 
-    // kolizie, ked hrac chce ist dopredu
+    /**
+     * Detekovanie kolizii s prekazkami
+     * Metoda sa vola vzdy, ked hrac stlaci sipku hore alebo medzernik na klavesnici
+     */
     public void posunDopredu() {
         if (!this.hracPrehral) {
             Stlpec nasledujuciStlpec = this.hraciaPlocha.getNasledujuciStlpec();
+            // ak sa hrac nenachadza na jednom z prvych troch stlpcov
             if (nasledujuciStlpec.getPolicko() != null) {
                 int hracY = this.hrac.getY();
                 int polickoY = nasledujuciStlpec.getPolicko().getY();
+                // ak sa hrac nachadza na na takej istej y-ovej suradnici ako prekazka v stlpci, na ktoru ide skocit
+                // resp. ak sa nachadza pred prekazkou
                 if (hracY == polickoY) {
-                    if (nasledujuciStlpec.getTyp().equals(TypPrekazky.JAMA) || nasledujuciStlpec.getTyp().equals(TypPrekazky.OHEN)) {
+                    // ak prekazka, na ktorej sa bude hrac nachadzat bude jama, ohen, alebo auto - hra sa skonci
+                    if (nasledujuciStlpec.getTyp().equals(TypPrekazky.JAMA) || nasledujuciStlpec.getTyp().equals(TypPrekazky.OHEN) || nasledujuciStlpec.getTyp().equals(TypPrekazky.AUTO)) {
                         this.hraciaPlocha.posunHraciuPlochu();
                         this.gameOver();
-                    } else if (nasledujuciStlpec.getTyp().equals(TypPrekazky.AUTO)) {
-                        System.out.println(nasledujuciStlpec.getAuto().getY());
+                    // ak prekazka, na ktorej sa bude hrac nachadzat bude strom alebo kamen - nespravi nic. ak nie, posunie sa hracia plocha a prida sa skore
                     } else if (!nasledujuciStlpec.getTyp().equals(TypPrekazky.STROM) && !nasledujuciStlpec.getTyp().equals(TypPrekazky.KAMEN)) {
                         this.hraciaPlocha.posunHraciuPlochu();
                         this.pridajSkore();
@@ -130,6 +155,9 @@ public class Hra {
         }
     }
 
+    /**
+     * Posun auta a detekovanie kolizii auta s hracom
+     */
     public void tikAuto() {
         if (!this.hracPrehral) {
             for (Stlpec s : this.hraciaPlocha.getZoznamStlpcov()) {
@@ -143,6 +171,9 @@ public class Hra {
             if (momentalnyStlpec.getAuto() != null) {
                 int hracY = this.hrac.getY();
                 int autoY = momentalnyStlpec.getAuto().getY();
+                // ak je vzdialenost auta a hraca menej ako 80px
+                // policko ma sice 100px, ale obrazky nie su na cele policko
+                // ked bola hodnota 80 nastavena na hodnotu 100, hra sa skoncila aj ked sa hrac nedotykal auta
                 if ((hracY - autoY < 80) && (hracY - autoY > -80)) {
                     this.gameOver();
                 }
@@ -150,6 +181,10 @@ public class Hra {
         }
     }
 
+    /**
+     * Metoda, ktora sa zavola, ked hrac prehra
+     * Zobrazi sa JOptionPane, ktory ponukne moznost hrat hru znovu alebo ukoncit hru
+     */
     public void gameOver() {
         this.hracPrehral = true;
         while (true) {
@@ -158,20 +193,23 @@ public class Hra {
                 this.restart();
                 break;
             } else if (hodnotaHratZnovu == 1) {
+                // Zaciatok citacie
                 /*
                  * COOPER, C. 2010. How to quit a java app from within the program [online]. Chris Cooper [cit. 2024-01-05]
                  * Dostupné na:
                  * https://stackoverflow.com/questions/2670956/how-to-quit-a-java-app-from-within-the-program
                 */
                 System.exit(0);
-                /*
-                 * Koniec citacie
-                */
+                // Koniec citacie
+
                 break;
             }
         }
     }
 
+    /**
+     * Metoda, ktora sa zavola, ked chce hrac hrat hru znovu po prehre
+     */
     public void restart() {
         this.hraciaPlocha.restart();
         this.skore.restart();
@@ -180,6 +218,11 @@ public class Hra {
         this.hracPrehral = false;
     }
 
+    /**
+     * Vytvara animaciu ohna
+     * Boolean animaciaOhna rozhoduje o tom, ci obrazok bude normalny, alebo zrkadlovo obrateny, vytvara tak iluziu horenia
+     * Metoda sa vola kazdych 500 milisekund
+     */
     public void tikOhen() {
         if (!this.hracPrehral) {
             for (Stlpec s : this.hraciaPlocha.getZoznamStlpcov()) {
