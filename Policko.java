@@ -47,10 +47,16 @@ public class Policko {
         this.obrazok.zmenObrazok(cesta);
     }
 
+    /**
+     * Vrati hodnotu atributu x
+     */
     public int getX() {
         return this.x;
     }
 
+    /**
+     * Vrati hodnotu atributu y
+     */
     public int getY() {
         return this.y;
     }

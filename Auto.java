@@ -1,5 +1,4 @@
 import fri.shapesge.Obrazok;
-import fri.shapesge.Manazer;
 import java.util.Random;
 /**
  * Specialny typ policka (prekazky)
@@ -61,14 +60,24 @@ public class Auto {
         this.obrazok.zmenPolohu(this.x, this.y);
     }
 
+    /**
+     * Vrati hodnotu atributu x
+     */
     public int getX() {
         return this.x;
     }
 
+    /**
+     * Vrati hodnotu atributu y
+     */
     public int getY() {
         return this.y;
     }
 
+    /**
+     * Nastavi hodnotu atributu posunAuta
+     * @param hodnota hodnota, na ktoru sa ma atribut posunAuta nastavit
+     */
     public void setPosunAuta(float hodnota) {
         this.posunAuta = hodnota;
     }

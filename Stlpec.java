@@ -96,18 +96,30 @@ public class Stlpec {
         }
     }
 
+    /**
+     * Vrati hodnotu atributu x
+     */
     public int getX() {
         return this.x;
     }
 
+    /**
+     * Vrati hodnotu atributu policko
+     */
     public Policko getPolicko() {
         return this.policko;
     }
 
+    /**
+     * Vrati hodnotu atributu typ
+     */
     public TypPrekazky getTyp() {
         return this.typ;
     }
 
+    /**
+     * Vrati hodnotu atributu auto
+     */
     public Auto getAuto() {
         return this.auto;
     }

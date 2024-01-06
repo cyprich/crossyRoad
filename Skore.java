@@ -56,7 +56,7 @@ public class Skore {
         this.hodnotaNaZnizenieSkore += 1;
         if (this.hodnotaNaZnizenieSkore >= 3) {
             this.zmenSkore(this.skore - 10);
-            this.nadradenaTrieda.setPosunAuta(1 + this.skore/20);
+            this.nadradenaTrieda.setPosunAuta(1 + this.skore / 20);
         }
 
         // aby hrac nemal skore menej ako 0
@@ -83,6 +83,9 @@ public class Skore {
         this.resetujHodnotuNaZnizenieSkore();
     }
 
+    /**
+     * Vrati hodnotu atributu skore
+     */
     public int getSkore() {
         return this.skore;
     }

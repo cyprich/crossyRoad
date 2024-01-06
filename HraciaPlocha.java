@@ -99,6 +99,9 @@ public class HraciaPlocha {
         return this.zoznamStlpcov.get(2);
     }
 
+    /**
+     * Vrati hodnotu atributu zoznamStlpcov
+     */
     public ArrayList<Stlpec> getZoznamStlpcov() {
         return this.zoznamStlpcov;
     }

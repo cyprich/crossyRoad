@@ -51,6 +51,9 @@ public class Hrac {
         this.obrazok.zobraz();
     }
 
+    /**
+     * Vrati hodnotu atributu y
+     */
     public int getY() {
         return this.y;
     }

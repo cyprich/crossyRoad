@@ -50,9 +50,13 @@ public class Hra {
      */
     public void pridajSkore() {
         this.skore.zmenSkore(this.skore.getSkore() + 1);
-        this.setPosunAuta(1 + this.skore.getSkore()/20);
+        this.setPosunAuta(1 + this.skore.getSkore() / 20);
     }
 
+    /**
+     * Nastavi hodnotu atributu posunAuta v kazdom stlpci, ktore obsahuje auto
+     * @param hodnota hodnota, na ktoru sa ma atribut posunAuta nastavit
+     */
     public void setPosunAuta(float hodnota) {
         this.posunAuta = hodnota;
         for (Stlpec s: this.hraciaPlocha.getZoznamStlpcov()) {
