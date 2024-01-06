@@ -14,11 +14,11 @@ public class Stlpec {
     private ArrayList<Policko> zoznamPolicok;
     private Auto auto;
     private int x;
-    private String typ;
+    private TypPrekazky typ;
     /**
      * Constructor for objects of class Stlpec
      */
-    public Stlpec(String typ, int x) {
+    public Stlpec(TypPrekazky typ, int x) {
         this.x = x;
         this.typ = typ;
         this.zoznamPolicok = new ArrayList<Policko>();
@@ -28,16 +28,16 @@ public class Stlpec {
         this.manazer.spravujObjekt(this);
 
         switch (this.typ) {
-            case "kamen":
-            case "strom":
-            case "jama":
-            case "ohen":
-                this.policko = new Policko(this.getCestaKObrazku(typ), this.x, this.getNahodnaPoloha());
+            case KAMEN:
+            case STROM:
+            case JAMA:
+            case OHEN:
+                this.policko = new Policko(typ.getCesta(), this.x, this.getNahodnaPoloha());
                 this.zoznamPolicok.add(this.policko);
                 break;
-            case "auto":
+            case AUTO:
                 for (int i = 0; i < 7; i++) {
-                    this.zoznamPolicok.add(new Policko(this.getCestaKObrazku("cesta"), this.x, i * 100));
+                    this.zoznamPolicok.add(new Policko("pics/cesta.png", this.x, i * 100));
                 }
                 this.auto = new Auto(this.x);
                 this.manazer.spravujObjekt(this.auto);
@@ -46,11 +46,6 @@ public class Stlpec {
             default:
                 break;
         }
-    }
-
-    // zmeni typ obrazku na cestu k obrazku
-    private String getCestaKObrazku(String s) {
-        return "pics/" + s + ".png";
     }
 
     // vrati nahodnu polohu od 0 do 600, zaokruhlenu na 100 (kvoli zarovnaniu)
@@ -87,7 +82,7 @@ public class Stlpec {
         return this.policko;
     }
 
-    public String getTyp() {
+    public TypPrekazky getTyp() {
         return this.typ;
     }
 

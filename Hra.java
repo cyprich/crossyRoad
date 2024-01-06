@@ -60,12 +60,12 @@ public class Hra {
                 int hracY = this.hrac.getY();
                 int polickoY = momentalnyStlpec.getPolicko().getY();
                 if (hracY - 100 == polickoY) {
-                    if (momentalnyStlpec.getTyp().equals("jama") || momentalnyStlpec.getTyp().equals("ohen")) {
+                    if (momentalnyStlpec.getTyp().equals(TypPrekazky.JAMA) || momentalnyStlpec.getTyp().equals(TypPrekazky.OHEN)) {
                         this.hrac.posunHracaHore();
                         this.gameOver();
-                    } else if (momentalnyStlpec.getTyp().equals("auto")) {
+                    } else if (momentalnyStlpec.getTyp().equals(TypPrekazky.AUTO)) {
                         System.out.println(momentalnyStlpec.getAuto().getY());
-                    } else if (!momentalnyStlpec.getTyp().equals("strom") && !momentalnyStlpec.getTyp().equals("kamen")) {
+                    } else if (!momentalnyStlpec.getTyp().equals(TypPrekazky.STROM) && !momentalnyStlpec.getTyp().equals(TypPrekazky.KAMEN)) {
                         this.hrac.posunHracaHore();
                     }
                 } else {
@@ -84,12 +84,12 @@ public class Hra {
                 int hracY = this.hrac.getY();
                 int polickoY = momentalnyStlpec.getPolicko().getY();
                 if (hracY + 100 == polickoY) {
-                    if (momentalnyStlpec.getTyp().equals("jama") || momentalnyStlpec.getTyp().equals("ohen")) {
+                    if (momentalnyStlpec.getTyp().equals(TypPrekazky.JAMA) || momentalnyStlpec.getTyp().equals(TypPrekazky.OHEN)) {
                         this.hrac.posunHracaDole();
                         this.gameOver();
-                    } else if (momentalnyStlpec.getTyp().equals("auto")) {
+                    } else if (momentalnyStlpec.getTyp().equals(TypPrekazky.AUTO)) {
                         System.out.println(momentalnyStlpec.getAuto().getY());
-                    } else if (!momentalnyStlpec.getTyp().equals("strom") && !momentalnyStlpec.getTyp().equals("kamen")) {
+                    } else if (!momentalnyStlpec.getTyp().equals(TypPrekazky.STROM) && !momentalnyStlpec.getTyp().equals(TypPrekazky.KAMEN)) {
                         this.hrac.posunHracaDole();
                     }
                 } else {
@@ -108,12 +108,12 @@ public class Hra {
                 int hracY = this.hrac.getY();
                 int polickoY = nasledujuciStlpec.getPolicko().getY();
                 if (hracY == polickoY) {
-                    if (nasledujuciStlpec.getTyp().equals("jama") || nasledujuciStlpec.getTyp().equals("ohen")) {
+                    if (nasledujuciStlpec.getTyp().equals(TypPrekazky.JAMA) || nasledujuciStlpec.getTyp().equals(TypPrekazky.OHEN)) {
                         this.hraciaPlocha.posunHraciuPlochu();
                         this.gameOver();
-                    } else if (nasledujuciStlpec.getTyp().equals("auto")) {
+                    } else if (nasledujuciStlpec.getTyp().equals(TypPrekazky.AUTO)) {
                         System.out.println(nasledujuciStlpec.getAuto().getY());
-                    } else if (!nasledujuciStlpec.getTyp().equals("strom") && !nasledujuciStlpec.getTyp().equals("kamen")) {
+                    } else if (!nasledujuciStlpec.getTyp().equals(TypPrekazky.STROM) && !nasledujuciStlpec.getTyp().equals(TypPrekazky.KAMEN)) {
                         this.hraciaPlocha.posunHraciuPlochu();
                         this.pridajSkore();
                     }
@@ -180,7 +180,7 @@ public class Hra {
     public void tikOhen() {
         if (!this.hracPrehral) {
             for (Stlpec s : this.hraciaPlocha.getZoznamStlpcov()) {
-                if (s.getTyp().equals("ohen")) {
+                if (s.getTyp().equals(TypPrekazky.OHEN)) {
                     if (this.animaciaOhna) {
                         s.getPolicko().zmenObrazok("pics/ohen_flip.png");
                         this.animaciaOhna = false;

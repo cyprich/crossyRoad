@@ -9,20 +9,12 @@ import java.util.Random;
 public class HraciaPlocha {
     private Stlpec stlpec;
     private ArrayList<Stlpec> zoznamStlpcov;
-    private ArrayList<String> zoznamPrekazok;
     private Random random;
     private Hra nadradenaTrieda;
     /**
      * Constructor for objects of class HraciaPlocha
      */
     public HraciaPlocha(Hra nadradenaTrieda) {
-        this.zoznamPrekazok = new ArrayList<String>();
-        this.zoznamPrekazok.add("auto");
-        this.zoznamPrekazok.add("kamen");
-        this.zoznamPrekazok.add("strom");
-        this.zoznamPrekazok.add("ohen");
-        this.zoznamPrekazok.add("jama");
-
         this.random = new Random();
 
         this.zoznamStlpcov = new ArrayList<Stlpec>();
@@ -35,19 +27,23 @@ public class HraciaPlocha {
         this.zoznamStlpcov.clear();
         for (int i = 0; i < 7; i++) {
             if (i <= 3) {
-                this.zoznamStlpcov.add(new Stlpec("", i * 100));
+                this.zoznamStlpcov.add(new Stlpec(TypPrekazky.PRAZDNE, i * 100));
             } else {
                 this.zoznamStlpcov.add(this.getNovyStlpec(i * 100));
             }
         }
     }
 
-    public Stlpec getNovyStlpec(int x) {
-        return new Stlpec(this.getNahodnaPrekazka(), x);
+
+    // vrati nahodnu prekazku
+    public TypPrekazky getNahodnaPrekazka() {
+        System.out.println(TypPrekazky.values()[this.random.nextInt(TypPrekazky.values().length)]);
+        return TypPrekazky.values()[this.random.nextInt(TypPrekazky.values().length)];
     }
 
-    public String getNahodnaPrekazka() {
-        return this.zoznamPrekazok.get(this.random.nextInt(this.zoznamPrekazok.size()));
+    // vygeneruje novy nahodny stplec
+    public Stlpec getNovyStlpec(int x) {
+        return new Stlpec(this.getNahodnaPrekazka(), x);
     }
 
     public void posunHraciuPlochu() {

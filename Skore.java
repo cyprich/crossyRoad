@@ -26,6 +26,7 @@ public class Skore {
     public void zmenSkore(int noveSkore) {
         this.skore = noveSkore;
         this.blokTextu.zmenText("Skóre: " + this.skore);
+        this.resetujHodnotuNaZnizenieSkore();
         this.dajNavrch();
     }
 
