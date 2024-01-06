@@ -4,3 +4,5 @@
 .idea/*
 doc/*
 out/*
+
+*.bluej
